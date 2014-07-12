@@ -3,7 +3,7 @@ setwd('~/Code/01/')
 
 # load the data into a dataframe
 # replace the file name
-wl=read.csv('adhocData635376701169286071.csv',header=F)
+wl=read.csv('~/Code/01/adhocData635376701169286071.csv',header=F)
 
 #shows how the data is structured
 str(wl)
@@ -106,5 +106,26 @@ while(wl.tmp<=length(wl.levels)){
   
   wl.tmp=wl.tmp+1
 }
+
+#with ggplot
+#install ggplot with the following command
+# install.packages('ggplot2')
+
+library(ggplot2)
+
+
+qplot(x=wl.latency,
+color=I('blue'),fill=I('orange'), binwidth =100,
+xlab='Lat',
+ylab='Freq') +
+scale_x_continuous(breaks=seq(0,20000,500),lim=c(0,5000))
+
+ggplot(aes(x = V1, y = V3),
+       data = subset(wl, !is.na(V1))) +
+  geom_boxplot(aes(color = V1)) +
+  xlab('Build') +
+  ylab('Latency')+
+  scale_y_continuous(breaks=seq(0,20000,500),lim=c(0,2000))
+
 
 
