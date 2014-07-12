@@ -12,6 +12,12 @@ str(wl)
 wl.build=wl$V1
 wl.latency=wl$V3
 
+hist(wl.latency, breaks=60000)
+
+plot(density(wl.latency))
+
+plot(wl.build, wl.latency, main="Scatterplot", xlab="Build", ylab="Latency", pch=19) 
+
 wl.colors=seq(1:(length(levels(wl$V1))))
 wl.levels=levels(wl$V1)
 
